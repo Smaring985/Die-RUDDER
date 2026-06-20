@@ -17,17 +17,17 @@ public class CarController : MonoBehaviour
     [SerializeField] private float _maxAngle;
     // Start is called before the first frame update
 
-    private void FixedUpdate()
+    private void FixedUpdate() 
     {
         _colliderFL.motorTorque = Input.GetAxis("Vertical") * _force;
         _colliderFR.motorTorque = Input.GetAxis("Vertical") * _force;
 
         if (Input.GetKey(KeyCode.Space))
         {
-            _colliderFL.brakeTorque = 3000f;
-            _colliderFR.brakeTorque = 3000f;
-            _colliderBL.brakeTorque = 3000f;
-            _colliderBR.brakeTorque = 3000f;
+            _colliderFL.brakeTorque = 0f;
+            _colliderFR.brakeTorque = 0f;
+            _colliderBL.brakeTorque = 100f;
+            _colliderBR.brakeTorque = 100f;
         }
         else
         {

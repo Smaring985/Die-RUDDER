@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CarController : MonoBehaviour
+public class mashin : MonoBehaviour
 {
 
     [SerializeField] private Transform _transformFL;
