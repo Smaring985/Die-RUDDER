@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class mashin : MonoBehaviour
+public class CarController : MonoBehaviour
 {
 
     [SerializeField] private Transform _transformFL;
@@ -24,10 +24,10 @@ public class mashin : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            _colliderFL.brakeTorque = 3000f;
-            _colliderFR.brakeTorque = 3000f;
-            _colliderBL.brakeTorque = 3000f;
-            _colliderBR.brakeTorque = 3000f;
+            _colliderFL.brakeTorque = 0f;
+            _colliderFR.brakeTorque = 0f;
+            _colliderBL.brakeTorque = 100f;
+            _colliderBR.brakeTorque = 100f;
         }
         else
         {
