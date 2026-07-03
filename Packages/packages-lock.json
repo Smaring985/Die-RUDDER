@@ -219,6 +219,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.volorf.figma-ui-image": {
+      "version": "https://github.com/Volorf/figma-ui-image.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "7c9e208f40df1ecb8477391beff316e347d8dc41"
+    },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
       "depth": 0,
