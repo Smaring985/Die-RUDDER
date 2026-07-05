@@ -2,58 +2,115 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+    private Rigidbody RB;
 
-    [SerializeField] private Transform _transformFL;
-    [SerializeField] private Transform _transformFR;
-    [SerializeField] private Transform _transformBL;
-    [SerializeField] private Transform _transformBR;
+    public Whell[] WhellObj;
 
-    [SerializeField] private WheelCollider _colliderFL;
-    [SerializeField] private WheelCollider _colliderFR;
-    [SerializeField] private WheelCollider _colliderBL;
-    [SerializeField] private WheelCollider _colliderBR;
+    public float vertivcal;
+    public float Horizontal;
 
-    [SerializeField] private float _force;
-    [SerializeField] private float _maxAngle;
-    // Start is called before the first frame update
-
-    private void FixedUpdate()
+    [SerializeField] private int _force;
+    [SerializeField] private int BreakeForce;
+    [SerializeField] public float _maxSpeed;
+    [SerializeField] private float InputBreake;
+    private void Start()
     {
-        _colliderFL.motorTorque = Input.GetAxis("Vertical") * _force;
-        _colliderFR.motorTorque = Input.GetAxis("Vertical") * _force;
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            _colliderFL.brakeTorque = 0f;
-            _colliderFR.brakeTorque = 0f;
-            _colliderBL.brakeTorque = 100f;
-            _colliderBR.brakeTorque = 100f;
-        }
-        else
-        {
-            _colliderFL.brakeTorque = 0f;
-            _colliderFR.brakeTorque = 0f;
-            _colliderBL.brakeTorque = 0f;
-            _colliderBR.brakeTorque = 0f;
-        }
-
-        _colliderFL.steerAngle = _maxAngle * Input.GetAxis("Horizontal");
-        _colliderFR.steerAngle = _maxAngle * Input.GetAxis("Horizontal");
-
-        RotateWheel(_colliderFL, _transformFL);
-        RotateWheel(_colliderFR, _transformFR);
-        RotateWheel(_colliderBL, _transformBL);
-        RotateWheel(_colliderBR, _transformBR);
+        RB = GetComponent<Rigidbody>();
     }
 
-    private void RotateWheel(WheelCollider collider, Transform transform)
+    private void Update()
+    {
+        Move();
+        Breake();
+        CheckBreak();
+        sdift();
+    }
+
+    public void CheckBreak()
+    {
+        vertivcal = Input.GetAxis("Vertical");
+        Horizontal = Input.GetAxis("Horizontal");
+        float movingdirectional = Vector3.Dot(transform.forward, RB.linearVelocity);
+
+        InputBreake = (movingdirectional < -0.5f && vertivcal > 0) || (movingdirectional > 0.5f && vertivcal < 0) ? Mathf.Abs(vertivcal) : 0;
+    }
+
+    public void Breake()
+    {
+        foreach (Whell Whell in WhellObj)
+        {
+            if (Whell.IsWorfart)
+            {
+                Whell.WheelCollider.brakeTorque = InputBreake * BreakeForce * 0.7f;
+            }
+            else
+            {
+                Whell.WheelCollider.brakeTorque = InputBreake * BreakeForce * 0.3f;
+            }
+        }
+
+    }
+    public void Move()
+    {
+        _maxSpeed = Vector3.Dot(transform.forward, RB.linearVelocity);
+      
+        foreach (Whell Whell in WhellObj)
+        {
+            Whell.WheelCollider.motorTorque = _force * vertivcal;
+
+         
+            Whell.Update();
+        }
+        Rotation();
+    }
+
+
+    public void sdift()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            foreach (Whell Whell in WhellObj)
+            {
+                if (!Whell.IsWorfart )
+                {
+                    Debug.Log(Whell);
+                    Whell.WheelCollider.brakeTorque = BreakeForce;
+                }
+            }
+        }
+    }
+
+    public void Rotation()
+    {
+        float Steer = Horizontal * 50;
+
+        foreach (Whell Whell in WhellObj)
+        {
+            if (Whell.IsWorfart)
+            {
+                Whell.WheelCollider.steerAngle = Steer;
+            }
+        }
+    }
+   
+}
+[System.Serializable]
+public struct Whell
+{
+    public Transform _transformWhell;
+    public WheelCollider WheelCollider;
+    public bool IsWorfart;
+
+    public void Update()
     {
         Vector3 position;
         Quaternion rotation;
 
-        collider.GetWorldPose(out position, out rotation);
+        WheelCollider.GetWorldPose(out position, out rotation);
 
-        transform.rotation = rotation;
-        transform.position = position;
+
+        _transformWhell.position = position;
+        _transformWhell.rotation = rotation;
     }
+
 }
