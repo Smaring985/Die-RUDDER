@@ -6,6 +6,7 @@ public class CarController : MonoBehaviour
 
     public Whell[] WhellObj;
 
+    public int Steet;
     public float vertivcal;
     public float Horizontal;
 
@@ -61,6 +62,8 @@ public class CarController : MonoBehaviour
          
             Whell.Update();
         }
+
+
         Rotation();
     }
 
@@ -82,7 +85,7 @@ public class CarController : MonoBehaviour
 
     public void Rotation()
     {
-        float Steer = Horizontal * 50;
+        float Steer = Horizontal * Steet;
 
         foreach (Whell Whell in WhellObj)
         {

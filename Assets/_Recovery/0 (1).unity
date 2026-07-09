@@ -154,11 +154,10 @@ MonoBehaviour:
   - _transformWhell: {fileID: 789868057}
     WheelCollider: {fileID: 430241560}
     IsWorfart: 0
-  Steet: 25
   vertivcal: 0
   Horizontal: 0
-  _force: 400
-  BreakeForce: 400
+  _force: 600
+  BreakeForce: 100
   _maxSpeed: 0
   InputBreake: 0
 --- !u!1001 &253237073
@@ -1354,7 +1353,7 @@ MonoBehaviour:
   RecenteringTarget: 2
   HorizontalAxis:
     Value: 0
-    Center: -0
+    Center: 0
     Range: {x: -180, y: 180}
     Wrap: 1
     Recentering:
@@ -1495,19 +1494,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1858005172513079971, guid: 62010132604e8c94d96b4cb4fe6d3394, type: 3}
       propertyPath: m_Mass
-      value: 1000
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 1858005172513079971, guid: 62010132604e8c94d96b4cb4fe6d3394, type: 3}
       propertyPath: m_ImplicitCom
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1858005172513079971, guid: 62010132604e8c94d96b4cb4fe6d3394, type: 3}
-      propertyPath: m_CenterOfMass.y
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1858005172513079971, guid: 62010132604e8c94d96b4cb4fe6d3394, type: 3}
-      propertyPath: m_CenterOfMass.z
-      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 1858005172513079971, guid: 62010132604e8c94d96b4cb4fe6d3394, type: 3}
       propertyPath: m_ImplicitTensor
@@ -1565,25 +1556,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6515560375722041047, guid: 62010132604e8c94d96b4cb4fe6d3394, type: 3}
-      propertyPath: m_ForwardFriction.m_AsymptoteValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6515560375722041047, guid: 62010132604e8c94d96b4cb4fe6d3394, type: 3}
-      propertyPath: m_SidewaysFriction.m_AsymptoteSlip
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6645616114513181105, guid: 62010132604e8c94d96b4cb4fe6d3394, type: 3}
       propertyPath: m_Name
       value: Free Racing Car Purple Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 9178659444073187824, guid: 62010132604e8c94d96b4cb4fe6d3394, type: 3}
-      propertyPath: m_ForwardFriction.m_AsymptoteValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9178659444073187824, guid: 62010132604e8c94d96b4cb4fe6d3394, type: 3}
-      propertyPath: m_SidewaysFriction.m_AsymptoteSlip
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2174,7 +2149,6 @@ MonoBehaviour:
   - _transformWhell: {fileID: 8654898162616939206}
     WheelCollider: {fileID: 258443756}
     IsWorfart: 0
-  Steet: 0
   vertivcal: 0
   Horizontal: 0
   _force: 400
